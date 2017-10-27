@@ -26,14 +26,10 @@
             $('.lg-toogle-thumb').click();
           }, 5000);
         });
-        $('#lightgallery').on('onSlideClick.lg', function (event, index, fromTouch, fromThumb) {
-          console.log(index, fromTouch, fromThumb);
-          var data = {
-            "index": index,
-            "fromTouch": fromTouch,
-            "fromThumb": fromThumb
-          }
-          parent.postMessage(data,"*");
+        $('#lightgallery').on('onAfterSlide.lg', function () {
+          var imgLink = $(".lg-current .lg-image")[0].attributes.src.value;
+          //console.log("imgLink: "+imgLink);
+          parent.postMessage({"currentImg": imgLink}, "*");
         });
       });
   </script>
